@@ -19,7 +19,7 @@ spec:
           workspace: pipeline-workspace          
       taskRef:
         name: cleanup
-        
+
     - name: clone
       workspaces:
         - name: output
@@ -34,3 +34,11 @@ spec:
         value: $(params.branch)
       runAfter:
         - init
+    - name: npminstall
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+      taskRef:
+        name: npm
+      runAfter:
+        - clone
